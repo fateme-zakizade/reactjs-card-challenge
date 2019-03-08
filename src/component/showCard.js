@@ -22,15 +22,19 @@ class ShowCard extends Component{
     render(){
        
         const {title,description,edit}=this.state;
+        const {code,sound,image}=this.props.cardShow;
+        console.log(code);
+        console.log(typeof(code))
         return (<div >
 
 <Card style={{ width: '18rem' }}>
-  {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
+
   <Card.Body>
     <Card.Title>{edit? <input name="title"  value={title} onChange={this.changeInput}/> : title}</Card.Title>
     <Card.Text>{edit? <textarea row={5} name="description" value={description} onChange={this.changeInput} style={{width:'100%'}}/> : description}</Card.Text>
   </Card.Body>
-  <Button variant="primary" onClick={this.editSave}>{edit ? "Save" : "Edit"} </Button>
+  {code===0 ? <Card.Img variant="bottom" src={image} /> : ""}
+  <Button variant="primary" onClick={this.editSave} className="my-3 mx-auto w-50" >{edit ? "Save" : "Edit"} </Button>
 </Card>
             </div>)
 
