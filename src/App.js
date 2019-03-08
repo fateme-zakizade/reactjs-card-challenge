@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import {fetchData} from "./fetchData/fetchData";
 import {connect} from 'react-redux';
-import {ShowCard} from "./component/showCard";
+import ShowCard from "./component/showCard";
 import {Button} from "react-bootstrap"
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 class App extends Component {
@@ -10,7 +10,7 @@ class App extends Component {
   {
     super(props);
     this.state={
-      random:2
+      random:0
     }
   }
   componentWillMount() {
@@ -32,7 +32,7 @@ class App extends Component {
     }
     return (
       <div className="d-flex justify-content-center align-items-center flex-column" style={{height:"100vh"}}>
-      <ShowCard cardShow={cards[this.state.random]} key={this.state.random}/>
+      <ShowCard cardShow={cards[this.state.random]} key={this.state.random} index={this.state.random}/>
       <Button variant="primary" className="mt-5 px-3 py-2" onClick={this.creatRandom}>Try</Button>
       </div>
       

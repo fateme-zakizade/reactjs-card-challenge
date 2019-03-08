@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Card,Button } from 'react-bootstrap';
 import {connect} from 'react-redux';
-import {PlayMusic} from "./playMusic"
+import {PlayMusic} from "./playMusic";
+import {editDataFunction} from "../editData/editData"
 
 class ShowCard extends Component{
     constructor(props)
@@ -15,7 +16,14 @@ class ShowCard extends Component{
         }
     }
     editSave=()=>{
-        this.setState({edit:!this.state.edit});
+        const {edit,title,description}=this.state;
+        const {index}=this.props;
+        if(edit)
+        {
+            
+            this.props.dispatch(editDataFunction({description,title,index}));
+        }
+        this.setState({edit:!edit});
     }
     changeInput=({target:{value,name}})=>{
         this.setState({[name]:value});
@@ -45,4 +53,9 @@ class ShowCard extends Component{
     
 }
 
-export  {ShowCard};
+
+function mapStateToProps(state) {
+    return { };
+  }
+  
+  export default connect(mapStateToProps)(ShowCard);

@@ -18,8 +18,8 @@ class PlayMusic extends Component{
     render()
     {
         const {sound,music}=this.state;
-        return(<div className="d-flex jus">
-        <Button  variant="danger"   onClick={this.music}>{this.state.music ? "puse" : "play"}</Button>
+        return(<div className="d-flex justify-content-center">
+        <Button  variant="danger" className="rounded-circle"   onClick={this.music}>{this.state.music ? "puse" : "play"}</Button>
         <Sound
            url={sound}
            playStatus={music ? Sound.status.PLAYING : Sound.status.PAUSED}
