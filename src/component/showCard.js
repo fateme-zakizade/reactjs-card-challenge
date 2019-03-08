@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Card,Button } from 'react-bootstrap';
 import {connect} from 'react-redux';
+import {PlayMusic} from "./playMusic"
+
 class ShowCard extends Component{
     constructor(props)
     {
@@ -9,7 +11,7 @@ class ShowCard extends Component{
         this.state={
             title:title,
             description:description,
-            edit:false
+            edit:false,
         }
     }
     editSave=()=>{
@@ -19,27 +21,28 @@ class ShowCard extends Component{
         this.setState({[name]:value});
 
     }
+    
     render(){
        
         const {title,description,edit}=this.state;
         const {code,sound,image}=this.props.cardShow;
-        console.log(code);
-        console.log(typeof(code))
         return (<div >
 
 <Card style={{ width: '18rem' }}>
 
   <Card.Body>
-    <Card.Title>{edit? <input name="title"  value={title} onChange={this.changeInput}/> : title}</Card.Title>
-    <Card.Text>{edit? <textarea row={5} name="description" value={description} onChange={this.changeInput} style={{width:'100%'}}/> : description}</Card.Text>
+    <Card.Title>{edit? <input name="title"  value={title} onChange={this.changeInput} style={{border:"solid rgb(88, 102, 165) 1px"}}/> : title}</Card.Title>
+    <Card.Text>{edit? <textarea row={5} name="description" value={description} onChange={this.changeInput}  style={{width:"100%",border:"solid rgb(88, 102, 165) 1px"}}/> : description}</Card.Text>
+  {code===2 ? <PlayMusic   sound={sound}  /> : ""}
   </Card.Body>
-  {code===0 ? <Card.Img variant="bottom" src={image} /> : ""}
-  <Button variant="primary" onClick={this.editSave} className="my-3 mx-auto w-50" >{edit ? "Save" : "Edit"} </Button>
+  {code===0 ? <Card.Img variant="bottom" src={image} />  : ""}
+  
+  <Button variant="secondary" onClick={this.editSave} className="my-3 mx-auto w-50" >{edit ? "Save" : "Edit"} </Button>
 </Card>
             </div>)
 
     }
     
 }
-  
+
 export  {ShowCard};
